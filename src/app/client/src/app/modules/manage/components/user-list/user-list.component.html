@@ -1,0 +1,63 @@
+<div class="sb-table-responsive-div m-24">
+
+
+  <div class="sb-table-container">
+    <div class="sb-table-search-header">
+      <div class="sb-search-box small no-btn">
+        <div class="input-div relative">
+          <i class="search icon"></i>
+          <input class="sb-search-input" type="text" placeholder="Search..." />
+          <i class="close icon"></i>
+          <div class="sb-loader"></div>
+        </div>
+        <button class="sb-btn sb-btn-normal">Search</button>
+      </div>
+    </div>
+    <table class="sb-table sb-table-striped sb-table-sortable sb-table-fixed sb-table-course-dashboard">
+      <thead>
+        <tr>
+          <th class="sb-sort-icon ascending descending">Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>User type</th>
+          <th class="sb-sort-icon ascending descending">Registration Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pageOfItems" (click)="editUser(item)">
+          <td data-label="name">{{item?.name}}</td>
+          <td data-label="usernmae">{{item?.username}}</td>
+          <td data-label="email">{{item?.email}}</td>
+          <td data-label="usertype">{{item?.userType}}</td>
+          <td data-label="phone">{{item?.registrationDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <div class="sb-pagination-container flex-jc-flex-end" *ngIf="pager.pages && pager.pages.length">
+
+      <!-- Nav to first page-->
+      <div class="sb-pagination my-0">
+        <a [ngClass]="{disabled:pager.currentPage===1 }" class="sb-item " (click)="setPage(1) ">&laquo;</a>
+
+        <!-- Nav to prev page-->
+        <a [ngClass]="{disabled:pager.currentPage===1 }" class="sb-item "
+          (click)="setPage(pager.currentPage - 1)">&lt;</a>
+
+        <!-- Nav to random number page-->
+        <a *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" (click)="setPage(page)"
+          class="sb-item">{{page}}</a>
+
+        <!-- Nav to next page-->
+        <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.currentPage + 1)"
+          class="sb-item">&gt;</a>
+
+      <!-- Nav to last page-->
+        <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.totalPages)"
+          class="sb-item ">&raquo;</a>
+      </div>
+    </div>
+
+  </div>
+</div>

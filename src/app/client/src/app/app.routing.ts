@@ -29,6 +29,9 @@ const appRoutes: Routes = [
     path: 'profile', loadChildren: 'app/plugins/profile/profile.module#ProfileModule'
   },
   {
+    path: 'user',  loadChildren: 'app/modules/user/user.module#UserModule'
+  },
+  {
     path: 'certs', loadChildren: 'app/modules/certificate/certificate.module#CertificateModule'
   },
   {
