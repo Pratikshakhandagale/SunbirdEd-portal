@@ -183,7 +183,6 @@ export class ProfileFrameworkPopupComponent implements OnInit, OnDestroy {
           const updateField = current.code === 'board' ? current : _.find(this.formFieldOptions, { index: current.index});
           accumulator.push(updateField);
         } else { // empty filters and selection
-          current.range = [];
           this.selectedOption[current.code] = [];
           accumulator.push(current);
         }
