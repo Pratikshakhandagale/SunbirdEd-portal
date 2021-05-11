@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserOrgManagementComponent } from './components/user-org-management/user-org-management.component';
 import { UserUploadComponent } from './components/user-upload/user-upload.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { AuthGuard } from '@sunbird/core';
 
 const routes: Routes = [
@@ -11,7 +12,9 @@ const routes: Routes = [
       env: 'admin-dashboard', pageid: 'admin-manage-page', type: 'view'
     }
   }},
-  {path: 'user-upload', component: UserUploadComponent}
+  {path: 'user-upload', component: UserUploadComponent},
+  {path: 'user-list', component: UserListComponent}
+
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

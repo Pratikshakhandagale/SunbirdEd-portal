@@ -1,6 +1,6 @@
+<app-user-edit *ngIf="isOpen" [formFieldData]="editItem"></app-user-edit>
+
 <div class="sb-table-responsive-div m-24">
-
-
   <div class="sb-table-container">
     <div class="sb-table-search-header">
       <div class="sb-search-box small no-btn">
@@ -25,11 +25,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of pageOfItems" (click)="editUser(item)">
-          <td data-label="name">{{item?.name}}</td>
+          <td data-label="name"> {{item?.name}}</td>
           <td data-label="usernmae">{{item?.username}}</td>
           <td data-label="email">{{item?.email}}</td>
           <td data-label="usertype">{{item?.userType}}</td>
-          <td data-label="phone">{{item?.registrationDate}}</td>
+          <td data-label="phone">{{item?.registerDate}}</td>
         </tr>
       </tbody>
     </table>
@@ -53,11 +53,12 @@
         <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.currentPage + 1)"
           class="sb-item">&gt;</a>
 
-      <!-- Nav to last page-->
+        <!-- Nav to last page-->
         <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.totalPages)"
           class="sb-item ">&raquo;</a>
       </div>
     </div>
 
   </div>
+
 </div>

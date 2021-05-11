@@ -80,4 +80,37 @@ export class ManageService {
       );
   }
 
+  public getUserList(): Observable<any>{
+    let url = "https://demo.appcarvers.com/junite/index.php?option=com_api&app=users&resource=users&format=raw&key=e879428b898e931e00dcdcc3f150e7689337a61c&search=a"
+    let headers: HttpHeaders = new HttpHeaders();
+  
+    return this.httpClient.get(url, {
+      headers: headers
+    })
+      .pipe(
+        map(res => {
+          console.log({res});
+
+          return res;
+        })
+      );
+      }
+
+
+      public getFormConfig(): Observable<any>{
+        let url = "../../components/user-edit/event-create.json";
+        let headers: HttpHeaders = new HttpHeaders();
+      
+        return this.httpClient.get(url, {
+          headers: headers
+        })
+          .pipe(
+            map(res => {
+              console.log({res});
+    
+              return res;
+            })
+          );
+          }
+
 }

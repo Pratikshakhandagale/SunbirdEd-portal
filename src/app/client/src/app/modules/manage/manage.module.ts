@@ -10,11 +10,16 @@ import { ManageRoutingModule } from './manage-routing.module';
 import { ManageService } from './services/manage/manage.service';
 import { TelemetryModule } from '@sunbird/telemetry';
 import { NgInviewModule } from 'angular-inport';
+import { UserListComponent} from './components/user-list/user-list.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserManageService } from '../manage/services/user/user.service';
 
 @NgModule({
   declarations: [
       UserOrgManagementComponent,
-      UserUploadComponent
+      UserUploadComponent,
+      UserListComponent,
+      UserEditComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +35,8 @@ import { NgInviewModule } from 'angular-inport';
   providers: [
     ResourceService,
     ToasterService,
-    ManageService
+    ManageService,
+    UserManageService
   ]
 })
 export class ManageModule {
