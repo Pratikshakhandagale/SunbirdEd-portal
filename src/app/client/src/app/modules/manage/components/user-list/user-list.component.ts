@@ -57,7 +57,6 @@ export class UserListComponent implements OnInit {
     },
      err => {
       console.log({err})
-
     });
 
     this.items = Array(150).fill(0).map((x, i) => ({
@@ -76,7 +75,6 @@ export class UserListComponent implements OnInit {
 
 
   editUser(item) {
-    console.log({ item });
     this.router.navigate(['/user-form'], { queryParams: { item: item } });
   }
 
