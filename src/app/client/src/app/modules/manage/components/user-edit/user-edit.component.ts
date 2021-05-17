@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ManageService } from '../../services/manage/manage.service';
 import { ToasterService, ResourceService } from '@sunbird/shared';
 import { UserManageService } from '../../services/user/user.service';
+import { UserService } from '@sunbird/core';
+
 
 @Component({
   selector: 'app-user-edit',
@@ -17,7 +19,7 @@ export class UserEditComponent implements OnInit {
   userDetailForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private manageService: ManageService,
+    private userService: UserService,
     private toasterService: ToasterService,
     private resourceService: ResourceService,
     private userManageService: UserManageService
@@ -25,9 +27,8 @@ export class UserEditComponent implements OnInit {
     this.userDetailForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
         });
 
   }
@@ -35,11 +36,10 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     console.log(this.formFieldData);
     this.userDetailForm = this.formBuilder.group({
-      firstName: [this.formFieldData.name, Validators.required],
-      lastName: [this.formFieldData.username, Validators.required],
-      email: [this.formFieldData.email, [Validators.required, Validators.email]],
-      password: [this.formFieldData.password, [Validators.required, Validators.minLength(6)]],
-      confirmPassword: [this.formFieldData.confirmPassword, Validators.required]
+      firstName: [this.formFieldData.firstName, Validators.required],
+      lastName: [this.formFieldData.lastName, Validators.required],
+      userName: [this.formFieldData.userName, Validators.required],
+      email: [this.formFieldData.email, [Validators.required, Validators.email]]
     });
   }
 
@@ -67,7 +67,14 @@ export class UserEditComponent implements OnInit {
 
   SaveUserData() {
 
-   
+
+    this.userService.updateUser().subscribe((res) => {
+      console.log({ res });
+      this.toasterService.success(this.resourceService.messages.smsg.m0049);
+     
+    })
+
+   /*
     const requestBody = {
       request: {
         event: this.userDetailForm.value
@@ -86,7 +93,7 @@ export class UserEditComponent implements OnInit {
     })
   
     console.log('this.userDetailForm = ' +  this.userDetailForm.value);
-    this.toasterService.success(this.resourceService.messages.smsg.m0049);
+    this.toasterService.success(this.resourceService.messages.smsg.m0049);*/
 
   }
 

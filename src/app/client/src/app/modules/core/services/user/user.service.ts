@@ -426,4 +426,47 @@ export class UserService {
     };
     return this.learnerService.getWithHeaders(option);
   }
+
+  userSearch(requestParam: any): Observable<ServerResponse> {
+    const option = {
+      url: this.config.urlConFig.URLS.USER.SEARCH_USER,
+      data: {
+        request: {
+          filters: requestParam.data.request.filters
+        }
+      }
+    };
+    return this.learnerService.post(option);
+  }
+
+  updateUser() {
+
+    let request = {
+      userId: this.userid,
+      phone: "1234512345",
+      phoneVerified: true
+
+    }
+
+    const data = this.formatRequest(request);
+
+    const option = {
+      url: this.config.urlConFig.URLS.USER.UPDATE_USER_PROFILE,
+      data: data
+    };
+
+    console.log({ option });
+    return this.learnerService.patch(option);
+  }
+
+  private formatRequest(request) {
+    console.log({ request });
+    request.userId = request.userId;
+    console.log(request.userId);
+
+    return {
+      params: {},
+      request: request
+    };
+  }
 }

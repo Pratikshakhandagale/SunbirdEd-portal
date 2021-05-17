@@ -2,63 +2,66 @@
 
 <div class="sb-table-responsive-div m-24">
   <div class="sb-table-container">
-    <div class="sb-table-search-header">
-      <div class="sb-search-box small no-btn">
-        <div class="input-div relative">
-          <i class="search icon"></i>
-          <input class="sb-search-input" type="text" placeholder="Search..." />
-          <i class="close icon"></i>
-          <div class="sb-loader"></div>
+    <div class="seven wide column pt-0 pl-0">
+      <div class="ui fluid icon input left action" id="search-input-container">
+        <div class="searchfilterinput ui search">
+          <div class="searchicon ui icon input ">
+            <input class="upForReviewSearchBox" type="text" name="filter_search" [(ngModel)]="query"
+              (keyup)="keyup(query)" placeholder="{{resourceService?.frmelmnts?.prmpt?.searchContent}}" title="Search"
+              autocomplete="off" spellcheck="false" dir="auto" />
+            <i (click)="searchString()" class="circular search link icon"></i>
+          </div>
+          <button (click)="clearString()" type="button"
+            class="sb-btn sb-btn-normal sb-btn-outline-primary sb-left-icon-btn ml-12 mt-0">Clear</button>
         </div>
-        <button class="sb-btn sb-btn-normal">Search</button>
       </div>
     </div>
-    <table class="sb-table sb-table-striped sb-table-sortable sb-table-fixed sb-table-course-dashboard">
-      <thead>
-        <tr>
-          <th class="sb-sort-icon ascending descending">Name</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>User type</th>
-          <th class="sb-sort-icon ascending descending">Registration Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of pageOfItems" (click)="editUser(item)">
-          <td data-label="name"> {{item?.name}}</td>
-          <td data-label="usernmae">{{item?.username}}</td>
-          <td data-label="email">{{item?.email}}</td>
-          <td data-label="usertype">{{item?.userType}}</td>
-          <td data-label="phone">{{item?.registerDate}}</td>
-        </tr>
-      </tbody>
-    </table>
+  </div>
+
+  <table class="sb-table sb-table-striped sb-table-sortable sb-table-fixed sb-table-course-dashboard">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>User type</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pageOfItems" (click)="editUser(item)">
+        <td data-label="name"> {{item?.firstName}} {{item?.lastName}}</td>
+        <td data-label="usernmae">{{item?.userName}}</td>
+        <td data-label="email">{{item?.email}}</td>
+        <td data-label="usertype">{{item?.userType}}</td>
+        <td data-label="phone">{{item?.createdDate}}</td>
+      </tr>
+    </tbody>
+  </table>
 
 
-    <div class="sb-pagination-container flex-jc-flex-end" *ngIf="pager.pages && pager.pages.length">
+  <div class="sb-pagination-container flex-jc-flex-end" *ngIf="pager.pages && pager.pages.length">
 
-      <!-- Nav to first page-->
-      <div class="sb-pagination my-0">
-        <a [ngClass]="{disabled:pager.currentPage===1 }" class="sb-item " (click)="setPage(1) ">&laquo;</a>
+    <!-- Nav to first page-->
+    <div class="sb-pagination my-0">
+      <a [ngClass]="{disabled:pager.currentPage===1 }" class="sb-item " (click)="setPage(1) ">&laquo;</a>
 
-        <!-- Nav to prev page-->
-        <a [ngClass]="{disabled:pager.currentPage===1 }" class="sb-item "
-          (click)="setPage(pager.currentPage - 1)">&lt;</a>
+      <!-- Nav to prev page-->
+      <a [ngClass]="{disabled:pager.currentPage===1 }" class="sb-item "
+        (click)="setPage(pager.currentPage - 1)">&lt;</a>
 
-        <!-- Nav to random number page-->
-        <a *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" (click)="setPage(page)"
-          class="sb-item">{{page}}</a>
+      <!-- Nav to random number page-->
+      <a *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage===page}" (click)="setPage(page)"
+        class="sb-item">{{page}}</a>
 
-        <!-- Nav to next page-->
-        <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.currentPage + 1)"
-          class="sb-item">&gt;</a>
+      <!-- Nav to next page-->
+      <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.currentPage + 1)"
+        class="sb-item">&gt;</a>
 
-        <!-- Nav to last page-->
-        <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.totalPages)"
-          class="sb-item ">&raquo;</a>
-      </div>
+      <!-- Nav to last page-->
+      <a [ngClass]="{disabled:pager.currentPage=== pager.totalPages}" (click)="setPage(pager.totalPages)"
+        class="sb-item ">&raquo;</a>
     </div>
-
   </div>
 
 </div>
